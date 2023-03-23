@@ -21,23 +21,24 @@
 
   <body>
     <div class="main-wrapper">
-      <!-- ============================================================== -->
       <!-- Preloader - style you can find in spinners.css -->
-      <!-- ============================================================== -->
       <div class="preloader">
         <div class="lds-ripple">
           <div class="lds-pos"></div>
           <div class="lds-pos"></div>
         </div>
       </div>
-      <!-- ============================================================== -->
       <!-- Preloader - style you can find in spinners.css -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
       <!-- Login box.scss -->
-      <!-- ============================================================== -->
       <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
         <div class="auth-box bg-dark border-top border-secondary">
+          <!-- @if(Session::has('flash_message_error'))
+          <div class="alert alert-danger alert-block ">
+          <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="alert"></button>   
+                <strong>{!! session('flash_message_error') !!}</strong>
+          </div>
+          @endif -->
+          @include('flash-message')
           <div id="loginform">
             <div class="text-center pt-3 pb-3">
               <span class="db"><img src="{{ asset('/assets/images/logo.png') }}" alt="logo" /></span>
