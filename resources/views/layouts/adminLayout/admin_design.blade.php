@@ -24,33 +24,10 @@
     </div>
     <!-- Main wrapper - style you can find in pages.scss -->
     <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full" data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-     
         @include('layouts.adminLayout.admin_header')
         @include('layouts.adminLayout.admin_sidebar')
-        <!-- Page wrapper  -->
-        <div class="page-wrapper">
-          <!-- Bread crumb and right sidebar toggle -->
-          <div class="page-breadcrumb">
-            <div class="row">
-              <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Dashboard</h4>
-                <div class="ms-auto text-end">
-                  <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Library</li>
-                    </ol>
-                  </nav>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- End Bread crumb and right sidebar toggle -->
-          @include('flash-message')
-          @yield('content')
-          @include('layouts.adminLayout.admin_footer')
-        </div>
-        <!-- End Page wrapper  -->
+        @yield('content')
+        @include('layouts.adminLayout.admin_footer')
     </div>
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -59,21 +36,7 @@
     <script src="{{ asset('/assets/libs/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
     <script src="{{ asset('/assets/libs/jquery-validation/dist/jquery.validate.min.js')}}"></script>
-   
-    <script>
-      // Basic Example with form
-      var form = $("#example-form");
-      form.validate({
-        errorPlacement: function errorPlacement(error, element) {
-          element.before(error);
-        },
-        rules: {
-          confirm_password: {
-            equalTo: "#new_password",
-          },
-        },
-      });
-    </script>
+    <script src="{{ asset('/assets/libs/jquery/dist/form-validation.js')}}"></script>
     <script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/extra-libs/sparkline/sparkline.js') }}"></script>

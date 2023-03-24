@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Fascade\Hash;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,12 @@ Auth::routes();
 Route::group(['middleware'=>['auth']],function(){
     Route::get('/admin/dashboard/',[AdminController::class, 'dashboard']);
     Route::get('/admin/settings/',[AdminController::class, 'settings']);
+    Route::get('/admin/checkpwd/',[AdminController::class, 'checkPassword']);
+    Route::match(['get','post'],'/admin/updatePwd/',[AdminController::class, 'updatePassword']);
+
+    // admin category route lists
+    Route::match(['get','post'],'/admin/add-category/',[CategoryController::class, 'addCategory']);
+    Route::get('/admin/view-categories/',[CategoryController::class, 'viewCategories']);
 });
 Route::get('/logout',[AdminController::class, 'logout']);
 

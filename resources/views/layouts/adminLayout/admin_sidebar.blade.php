@@ -12,6 +12,26 @@
           </a>
         </li>
         <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="mdi mdi-receipt"></i>
+            <span class="hide-menu">Categories </span>
+          </a>
+          <ul aria-expanded="false" class="collapse first-level">
+            <li class="sidebar-item">
+              <a href="{{url('admin/add-category')}}" class="sidebar-link">
+                <i class="mdi mdi-note-outline"></i>
+                <span class="hide-menu"> Add Category </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="{{url('admin/view-categories')}}" class="sidebar-link">
+                <i class="mdi mdi-note-plus"></i>
+                <span class="hide-menu"> View Categories</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="charts.html" aria-expanded="false">
             <i class="mdi mdi-chart-bar"></i>
             <span class="hide-menu">Charts</span>
