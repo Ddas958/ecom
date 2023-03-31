@@ -68,7 +68,7 @@ class AdminController extends Controller
             User::where('id','1')->update(['password'=> $password]);
             return redirect('/admin/settings')->with('success','Password Updated Successfully.');
         }else{
-            return redirect('/admin/settings')->with('success','Current Password is Incorrect.');
+            return redirect('/admin/settings')->with('error','Current Password is Incorrect.');
         }
     }
 }

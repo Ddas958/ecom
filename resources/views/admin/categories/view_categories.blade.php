@@ -22,37 +22,29 @@
         <div class="card">
                 <div class="card-body">
                   <h5 class="card-title">Product Categories</h5>
+                  @include('flash-message')
                     <div class="table-responsive">
                         <div class="row">
                             <div class="col-sm-12">
-                                <table id="zero_config" class="table table-striped table-bordered dataTable" role="grid" aria-describedby="zero_config_info">
+                                <table id="zero_config" class="table table-striped table-bordered dataTable">
                                     <thead>
                                         <tr role="row">
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Category ID</th>
+                                            <th>Category Name</th>
+                                            <th>Category URL</th>
+                                            <th>Actions</th>
                                         </tr>
                                     </thead>
-                                    <tbody>   
+                                    <tbody> 
+                                        @foreach($categories as $category)  
                                         <tr role="row" class="odd">
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>33</td>
-                                        <td>2008/11/28</td>
-                                        <td>$162,700</td>
+                                            <td>{{$category->id}}</td>
+                                            <td>{{$category->name}}</td>
+                                            <td>{{$category->url}}</td>
+                                            <td><a href="{{url('admin/edit-category/'.$category->id)}}" class="btn btn-cyan btn-sm text-white">Edit</a> <a href="{{url('admin/delete-category/'.$category->id)}}" class="btn btn-danger btn-sm text-white">Delete</a></td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th rowspan="1" colspan="1">Position</th>
-                                            <th rowspan="1" colspan="1">Office</th>
-                                            <th rowspan="1" colspan="1">Age</th>
-                                            <th rowspan="1" colspan="1">Start date</th>
-                                            <th rowspan="1" colspan="1">Salary</th>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </div>
                         </div>

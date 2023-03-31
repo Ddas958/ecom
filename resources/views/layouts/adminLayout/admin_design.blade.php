@@ -11,7 +11,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}"/>
     <link href="{{ asset('/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet" />
     <link href="{{ asset('/dist/css/style.min.css') }}" rel="stylesheet" />
-    <link href=".{{ asset('/assets/libs/jquery-steps/jquery.steps.css')}}" rel="stylesheet">
+    <link href="{{ asset('/assets/libs/jquery-steps/jquery.steps.css')}}" rel="stylesheet">
+    <link href="{{ asset('/assets/extra-libs/DataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('/assets/libs/select2/dist/js/select2.min.css') }}" rel="stylesheet">
   </head>
 
   <body>
@@ -40,6 +42,14 @@
     <script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/extra-libs/sparkline/sparkline.js') }}"></script>
+    <script src="{{ asset('/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
+    <script src="{{ asset('/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script>
+      /****************************************
+       *       Basic Table                   *
+       ****************************************/
+      $("#zero_config").DataTable();
+    </script>
     <!--Wave Effects -->
     <!-- <script src="{{ asset('/dist/js/waves.js') }}"></script> -->
     <!--Menu sidebar -->

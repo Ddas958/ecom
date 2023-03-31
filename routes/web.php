@@ -32,6 +32,7 @@ Route::group(['middleware'=>['auth']],function(){
     // admin category route lists
     Route::match(['get','post'],'/admin/add-category/',[CategoryController::class, 'addCategory']);
     Route::get('/admin/view-categories/',[CategoryController::class, 'viewCategories']);
+    Route::match(['get','post'],'/admin/edit-category/{id}',[CategoryController::class, 'editCategory']);
 });
 Route::get('/logout',[AdminController::class, 'logout']);
 
