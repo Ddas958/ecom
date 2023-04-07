@@ -8,10 +8,11 @@ use App\Models\Category;
 class CategoryController extends Controller
 {
     public function addCategory(Request $request){
-        $levels = Category::get();
+        $levels = Category::where('parent_id','0')->get();
         if($request->isMethod('post')){
             $data = $request->all();
             //print_r($data);die;
+            $categoryDetails = Category::where('id',$id)->first();
             $category = new Category;
             $category->parent_id = $data['parent_id'];
             $category->name = $data['category_name'];
@@ -20,6 +21,7 @@ class CategoryController extends Controller
             $category->save();
             return redirect('/admin/view-categories')->with('success','Category Added Successfully.');
         }
+
         return view('admin.categories.add_category')->with(compact('levels'));
 
     }
@@ -42,5 +44,9 @@ class CategoryController extends Controller
     public function viewCategories(Request $request){
         $categories = Category::get();
         return view('admin.categories.view_categories')->with(compact('categories'));
+    }
+    public function deleteCategory( $id= null ){
+        Category::where('id',$id)->delete();
+        return redirect('/admin/view-categories')->with('success','Category Deleted Successfully.');
     }
 }

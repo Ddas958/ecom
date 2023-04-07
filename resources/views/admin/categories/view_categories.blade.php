@@ -31,17 +31,22 @@
                                         <tr role="row">
                                             <th>Category ID</th>
                                             <th>Category Name</th>
+                                            <th>Parent Category</th>
                                             <th>Category URL</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody> 
+                                   
                                         @foreach($categories as $category)  
+                                        
+                                        @php $parent = Category::where('parent_id',$category->parent_id)->get();  print_r($parent);die;@endphp
                                         <tr role="row" class="odd">
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
+                                            <td>{{$parent->name}}</td>
                                             <td>{{$category->url}}</td>
-                                            <td><a href="{{url('admin/edit-category/'.$category->id)}}" class="btn btn-cyan btn-sm text-white">Edit</a> <a href="{{url('admin/delete-category/'.$category->id)}}" class="btn btn-danger btn-sm text-white">Delete</a></td>
+                                            <td><a href="{{url('admin/edit-category/'.$category->id)}}" class="btn btn-cyan btn-sm text-white">Edit</a> <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{url('admin/delete-category/'.$category->id)}}" class="btn btn-danger btn-sm text-white">Delete</a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>

@@ -34,7 +34,7 @@
                         <option value="0">Main Category</option>
                         @if(isset($levels))
                         @foreach($levels as $val)
-                            <option value="{{ $val->id }}">{{ $val->name }}</option>
+                            <option value="{{ $val->id }}" @if($val->id == $categoryDetails->parent_id)selected @endif>{{ $val->name }}</option>
                         @endforeach
                         @endif
                     </select>
