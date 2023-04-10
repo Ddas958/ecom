@@ -10,9 +10,8 @@
                     <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active"><a href="{{url('/admin/dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active"><a href="{{url('/admin/dashboard')}}">Categories</a></li>
-                        <li class="breadcrumb-item active"><a href="{{url('/admin/dashboard')}}">Add Category</a></li>
-                        
+                        <li class="breadcrumb-item active"><a href="{{url('/admin/view-categories')}}">Categories</a></li>
+                        <li class="breadcrumb-item active"><a href="javascript:void(0)">Add Category</a></li>
                     </ol>
                     </nav>
                 </div>

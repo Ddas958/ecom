@@ -11,7 +11,6 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item "><a href="{{url('/admin/dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active"><a href="{{url('/admin/view-categories')}}">Categories</a></li>
-                        
                     </ol>
                     </nav>
                 </div>
@@ -33,12 +32,13 @@
                     <select name="parent_id" class="select2 form-select required form-control">
                         <option value="0">Main Category</option>
                         @if(isset($levels))
-                        @foreach($levels as $val)
-                            <option value="{{ $val->id }}" @if($val->id == $categoryDetails->parent_id)selected @endif>{{ $val->name }}</option>
-                        @endforeach
+                            @foreach($levels as $val)
+                                @if($val->name != $categoryDetails->name)
+                                    <option value="{{ $val->id }}" @if($val->id == $categoryDetails->parent_id)selected @endif>{{ $val->name }}</option>
+                                @endif
+                            @endforeach
                         @endif
                     </select>
-                   
                     <label for="Description">Description</label>
                     <textarea name="description" id="description" class="required form-control">{{ $categoryDetails->description }}</textarea>
                     <label for="URL">URL</label>

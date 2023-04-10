@@ -23,7 +23,7 @@
                 <div class="card-body">
                   <h5 class="card-title">Product Categories</h5>
                   @include('flash-message')
-                    <div class="table-responsive">
+                    <div class="table">
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="zero_config" class="table table-striped table-bordered dataTable">
@@ -38,13 +38,11 @@
                                     </thead>
                                     <tbody> 
                                    
-                                        @foreach($categories as $category)  
-                                        
-                                        @php $parent = Category::where('parent_id',$category->parent_id)->get();  print_r($parent);die;@endphp
+                                        @foreach($categories as $category)                                   
                                         <tr role="row" class="odd">
                                             <td>{{$category->id}}</td>
                                             <td>{{$category->name}}</td>
-                                            <td>{{$parent->name}}</td>
+                                            <td>{{$category->getParentsNames()}}</td>
                                             <td>{{$category->url}}</td>
                                             <td><a href="{{url('admin/edit-category/'.$category->id)}}" class="btn btn-cyan btn-sm text-white">Edit</a> <a onclick="return confirm('Are you sure you want to delete this item?');" href="{{url('admin/delete-category/'.$category->id)}}" class="btn btn-danger btn-sm text-white">Delete</a></td>
                                         </tr>

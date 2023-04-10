@@ -35,7 +35,7 @@ class CategoryController extends Controller
             ]);
             return redirect('admin/view-categories')->with('success','Category Updated Succesfully.');
         }
-            $levels = Category::get();
+            $levels = Category::where('parent_id','0')->get();
             $categoryDetails = Category::where('id',$id)->first();
             return view('admin.categories.edit_category')->with(compact('categoryDetails','levels'));
 

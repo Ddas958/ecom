@@ -5,6 +5,7 @@ use Illuminate\Support\Fascade\Hash;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,8 +35,13 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/admin/view-categories/',[CategoryController::class, 'viewCategories']);
     Route::match(['get','post'],'/admin/edit-category/{id}',[CategoryController::class, 'editCategory']);
     Route::match(['get','post'],'/admin/delete-category/{id}',[CategoryController::class, 'deleteCategory']);
+     
+    // admin category route lists
+    Route::match(['get','post'],'/admin/add-product/',[ProductsController::class, 'addProduct']);
+    Route::get('/admin/view-products/',[ProductsController::class, 'viewProducts']);
     
 });
+
 Route::get('/logout',[AdminController::class, 'logout']);
 
 

@@ -7,7 +7,7 @@
     <meta name="keywords" content="wrappixel, admin dashboard"/>
     <meta name="description" content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template"/>
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title>Laravel Admin</title>
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/assets/images/favicon.png') }}"/>
     <link href="{{ asset('/assets/libs/flot/css/float-chart.css') }}" rel="stylesheet" />
     <link href="{{ asset('/dist/css/style.min.css') }}" rel="stylesheet" />
