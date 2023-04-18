@@ -39,11 +39,14 @@
     <script src="{{ asset('/assets/libs/jquery-steps/build/jquery.steps.min.js')}}"></script>
     <script src="{{ asset('/assets/libs/jquery-validation/dist/jquery.validate.min.js')}}"></script>
     <script src="{{ asset('/assets/libs/jquery/dist/form-validation.js')}}"></script>
-    <script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.js') }}"></script>
     <script src="{{ asset('/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
     <script src="{{ asset('/assets/extra-libs/sparkline/sparkline.js') }}"></script>
     <script src="{{ asset('/assets/extra-libs/DataTables/datatables.min.js') }}"></script>
     <script src="{{ asset('/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
       /****************************************
        *       Basic Table                   *

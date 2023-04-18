@@ -12,7 +12,6 @@ class CategoryController extends Controller
         if($request->isMethod('post')){
             $data = $request->all();
             //print_r($data);die;
-            $categoryDetails = Category::where('id',$id)->first();
             $category = new Category;
             $category->parent_id = $data['parent_id'];
             $category->name = $data['category_name'];

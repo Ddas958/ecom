@@ -112,6 +112,37 @@ $(document).ready(function(){
 		}
 	});
 
+	// Edit Product Validation
+    $("#edit_product").validate({
+		rules:{
+			category_id:{
+				required:true
+			},
+			product_name:{
+				required:true
+			},
+			product_code:{
+				required:true,
+			},
+			product_color:{
+				required:true,
+			},
+			price:{
+				required:true,
+				number:true
+			}
+		},
+		errorClass: "help-inline",
+		errorElement: "span",
+		highlight:function(element, errorClass, validClass) {
+			$(element).parents('.control-group').addClass('error');
+		},
+		unhighlight: function(element, errorClass, validClass) {
+			$(element).parents('.control-group').removeClass('error');
+			$(element).parents('.control-group').addClass('success');
+		}
+	});
+
 	// Edit Category Validation
     $("#edit_category").validate({
 		rules:{
@@ -192,11 +223,74 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#delCat").click(function(){
-		if(confirm('Are you sure you want to delete this Category?')){
-			return true;
-		}
-		return false;
+	$(".delCat").click(function(){
+		
+		var id = $(this).attr('rel');
+		var deleteFunction = $(this).attr('rel1');
+		Swal.fire({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this category!",
+			icon: "warning",
+			confirmButtonText: 'Yes, delete it!',
+			showCloseButton: true,
+			showCancelButton: true,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				setTimeout(() => {
+					window.location.href = "/admin/"+deleteFunction+"/"+id;
+				  }, 2000);
+				Swal.fire(
+					 "Deleted!",
+					"Your category has been deleted.",
+					"success",
+					"3000",
+				);
+			}
+		});
+
+	});
+
+	$(".delProduct").click(function(){
+		var id = $(this).attr('rel');
+		var deleteFunction = $(this).attr('rel1');
+		Swal.fire({
+			title: "Are you sure?",
+			text: "Once deleted, you will not be able to recover this product!",
+			icon: "warning",
+			confirmButtonText: 'Yes, delete it!',
+			showCloseButton: true,
+			showCancelButton: true,
+		}).then((result) => {
+			if (result.isConfirmed) {
+				setTimeout(() => {
+					window.location.href = "/admin/"+deleteFunction+"/"+id;
+				  }, 2000);
+				Swal.fire("Deleted!",
+					"Your product has been deleted.",
+					"success",
+					"3000",
+				)
+			}
+			
+		});
+	});
+	$(document).ready(function(){
+	    var maxField = 10; //Input fields increment limitation
+	    var addButton = $('.add_button'); //Add button selector
+	    var wrapper = $('.field_wrapper'); //Input field wrapper
+	    var fieldHTML = '<div class="controls field_wrapper" style="margin-left:-2px;"><input type="text" name="sku[]" style="width:120px"/>&nbsp;<input type="text" name="size[]" style="width:120px"/>&nbsp;<input type="text" name="price[]" style="width:120px"/>&nbsp;<input type="text" name="stock[]" style="width:120px"/><a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>'; //New input field html 
+	    var x = 1; //Initial field counter is 1
+	    $(addButton).click(function(){ //Once add button is clicked
+	        if(x < maxField){ //Check maximum number of input fields
+	            x++; //Increment field counter
+	            $(wrapper).append(fieldHTML); // Add field html
+	        }
+	    });
+	    $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
+	        e.preventDefault();
+	        $(this).parent('div').remove(); //Remove field html
+	        x--; //Decrement field counter
+	    });
 	});
 
 });

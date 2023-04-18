@@ -39,7 +39,12 @@ Route::group(['middleware'=>['auth']],function(){
     // admin category route lists
     Route::match(['get','post'],'/admin/add-product/',[ProductsController::class, 'addProduct']);
     Route::get('/admin/view-products/',[ProductsController::class, 'viewProducts']);
-    
+    Route::match(['get','post'],'/admin/edit-product/{id}',[ProductsController::class, 'editProduct']);
+    Route::get('/admin/delete-product/{id}',[ProductsController::class, 'deleteProduct']);
+    Route::get('/admin/delete-product-image/{id}',[ProductsController::class, 'deleteProductImage']);
+
+    // admin product attribute routes
+    Route::match(['get','post'],'/admin/add-attributes/{id}',[ProductsController::class, 'addAttributes']);
 });
 
 Route::get('/logout',[AdminController::class, 'logout']);
