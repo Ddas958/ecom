@@ -85,8 +85,8 @@ class ProductsController extends Controller
 				if($image_tmp->isValid()){
 					$extension = $image_tmp->getClientOriginalExtension();
 					$filename = rand(111,99999).'.'.$extension;
-					$large_image_path ='images/backend_images/products/large/'.$filename;
-					$small_image_path = 'images/backend_images/products/small/'.$filename;
+					$large_image_path ='assets/images/backend_images/products/large/'.$filename;
+					$small_image_path = 'assets/images/backend_images/products/small/'.$filename;
 					// Resize Images
 					Image::make($image_tmp)->save($large_image_path);
 					Image::make($image_tmp)->resize(100,100)->save($small_image_path);
@@ -151,8 +151,8 @@ class ProductsController extends Controller
 		$productImage = Product::where('id',$id)->first();
 
 		// Get Product Image Paths
-		$large_image_path = 'images/backend_images/product/large/';
-		$small_image_path = 'images/backend_images/product/small/';
+		$large_image_path = 'assets/images/backend_images/product/large/';
+		$small_image_path = 'assets/images/backend_images/product/small/';
 
 		// Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){

@@ -52,7 +52,7 @@
                                         <td>{{ $product->price }}</td>
                                         <td>
                                             @if(!empty($product->image))
-                                            <img src="{{ asset('/images/backend_images/products/small/'.$product->image) }}" style="width:35px;">
+                                            <img src="{{ asset('assets/images/backend_images/products/small/'.$product->image) }}" style="width:35px;">
                                             @endif
                                         </td>
                                         <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-primary btn-mini">Add</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a id="delProduct" rel="{{$product->id}}" rel1="delete-product" class="delProduct btn btn-danger btn-mini">Delete</a></td>
