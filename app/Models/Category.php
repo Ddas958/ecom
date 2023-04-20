@@ -10,6 +10,9 @@ class Category extends Model
     use HasFactory;
     protected $table = 'categories';
 
+    public function categories(){
+        return $this->hasMany('App\Models\Category','parent_id');
+    }
     public function parent(){
         return $this->belongsTo('App\Models\Category', 'parent_id');
     }
