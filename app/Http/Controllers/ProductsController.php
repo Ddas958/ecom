@@ -199,7 +199,12 @@ class ProductsController extends Controller
             }
             return redirect('admin/add-attributes/'.$id)->with('success', 'Product Attributes has been added successfully');
 		}
-		$productDetails = Product::where(['id'=>$id])->first();
+		$productDetails = Product::with('attributes')->where(['id'=>$id])->first();
+		//dd($productDetails);
 		return view('admin.products.add_attributes')->with(compact('productDetails'));
+	}
+	public function deleteAttribute($id = null){
+		ProductsAttribute::where(['id'=>$id])->delete();
+		return redirect()->back()->with('success','Attribute deleted successfully!');
 	}
 }

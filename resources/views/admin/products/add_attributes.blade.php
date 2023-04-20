@@ -1,5 +1,10 @@
 @extends('layouts.adminLayout.admin_design')
 @section('content')
+<style>
+    .field_wrapper .form-control{
+        display:inline;
+    }
+</style>
 <div class="page-wrapper">
     <!-- Bread crumb and right sidebar toggle -->
     <div class="page-breadcrumb">
@@ -21,41 +26,81 @@
     <!-- End Bread crumb and right sidebar toggle -->
     <div class="container-fluid">
         <div class="card">
-        <div class="card-body wizard-content">
-            <h4 class="card-title">Add Product Attributes</h4>
-            @if(Session::has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>{!! session('error') !!}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif   
-            @if(Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>{!! session('success') !!}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            @endif
-            <form enctype="multipart/form-data" class="mt-4" method="post" action="{{ url('/admin/add-attributes/'.$productDetails->id) }}" name="add_product" id="add_product" novalidate="novalidate"> 
-                {{ csrf_field() }}
-                <input type="hidden" name="product_id" value="{{$productDetails->id}}">
-                <label class="control-label">Product Name</label>
-                <input type="text" class="required form-control" name="product_name" id="product_name" value="{{$productDetails->product_name}}">
-                <label class="control-label">Product Code</label>
-                <input type="text" class="required form-control" name="product_code" id="product_code" value="{{$productDetails->product_code}}">
-                <label class="control-label">Product Color</label>
-                <input type="text" class="required form-control" name="product_color" id="product_color" value="{{$productDetails->product_color}}">
-                <br>
-                <div class="field_wrapper form-group row">
-                    <input class="form-control" required title="Required" type="text" name="sku[]" id="sku" placeholder="SKU" style="width:120px;">
-                    <input class="form-control" required title="Required" type="text" name="size[]" id="size" placeholder="Size" style="width:120px;">
-                    <input class="form-control" required title="Required" type="text" name="price[]" id="price" placeholder="Price" style="width:120px;"> 
-                    <input class="form-control" required title="Required" type="text" name="stock[]" id="stock" placeholder="Stock" style="width:120px;">
-                    <a href="javascript:void(0);" class="add_button" title="Add field">Add</a>
-                </div>
-                <br>
-                <input type="submit" class="btn btn-md btn-primary  required " value="Add Attribute">
-            </form>
+            <div class="card-body wizard-content col-md-9">
+                <h4 class="card-title">Add Product Attributes</h4>
+                @include('flash-message')
+                <form enctype="multipart/form-data" class="mt-4" method="post" action="{{ url('/admin/add-attributes/'.$productDetails->id) }}" name="add_product" id="add_product" novalidate="novalidate"> 
+                    {{ csrf_field() }}
+                    <input type="hidden" name="product_id" value="{{$productDetails->id}}">
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Product Name</label>
+                      <div class="col-sm-9">
+                      <input type="text" class="required form-control" id="product_name" value="{{$productDetails->product_name}}" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Product Code</label>
+                      <div class="col-sm-9">
+                      <input type="text" class="required form-control" id="product_code" value="{{$productDetails->product_code}}" disabled>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="fname" class="col-sm-3 text-end control-label col-form-label">Product Color</label>
+                      <div class="col-sm-9">
+                      <input type="text" class="required form-control" id="product_color" value="{{$productDetails->product_color}}" disabled>
+                      </div>
+                    </div>
+                 
+                    <div class="field_wrapper form-group row">
+                        <label for="fname" class="col-sm-3 text-end control-label col-form-label">Product Attributes</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" required title="Required" type="text" name="sku[]" id="sku" placeholder="SKU" style="width:100px;">
+                            <input class="form-control" required title="Required" type="text" name="size[]" id="size" placeholder="Size" style="width:100px;">
+                            <input class="form-control" required title="Required" type="text" name="price[]" id="price" placeholder="Price" style="width:100px;"> 
+                            <input class="form-control" required title="Required" type="text" name="stock[]" id="stock" placeholder="Stock" style="width:100px;">
+                            <a href="javascript:void(0);" class="btn btn-sm btn-primary add_button" title="Add field">Add</a>
+                        </div>
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-md btn-primary  required " value="Add Attribute">
+                </form>
+            </div>
         </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Attributes</h5>
+                <div class="table">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="zero_config" class="table table-striped table-bordered dataTable">
+                                <thead>
+                                    <tr role="row">
+                                        <th>Attribute ID</th>
+                                        <th>SKU</th>
+                                        <th>Size</th>
+                                        <th>Price</th>
+                                        <th>Stock</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody> 
+                                    @foreach($productDetails['attributes'] as $attribute)                                   
+                                    <tr role="row" class="odd">
+                                        <td>{{ $attribute->id }}</td>
+                                        <td>{{ $attribute->sku }}</td>
+                                        <td>{{ $attribute->size }}</td>
+                                        <td>{{ $attribute->price }}</td>
+                                        <td>{{ $attribute->stock }}</td>
+                                        <td class="center"><a href="javascript:void(0)" rel="{{$attribute->id}}" rel1="delete-attribute" class="delRecord btn btn-danger btn-mini">Delete</a></td>
+                                    </tr>
+                                   
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

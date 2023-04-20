@@ -223,39 +223,13 @@ $(document).ready(function(){
 		}
 	});
 
-	$(".delCat").click(function(){
-		
+
+	$(".delRecord").click(function(){
 		var id = $(this).attr('rel');
 		var deleteFunction = $(this).attr('rel1');
 		Swal.fire({
 			title: "Are you sure?",
-			text: "Once deleted, you will not be able to recover this category!",
-			icon: "warning",
-			confirmButtonText: 'Yes, delete it!',
-			showCloseButton: true,
-			showCancelButton: true,
-		}).then((result) => {
-			if (result.isConfirmed) {
-				setTimeout(() => {
-					window.location.href = "/admin/"+deleteFunction+"/"+id;
-				  }, 2000);
-				Swal.fire(
-					 "Deleted!",
-					"Your category has been deleted.",
-					"success",
-					"3000",
-				);
-			}
-		});
-
-	});
-
-	$(".delProduct").click(function(){
-		var id = $(this).attr('rel');
-		var deleteFunction = $(this).attr('rel1');
-		Swal.fire({
-			title: "Are you sure?",
-			text: "Once deleted, you will not be able to recover this product!",
+			text: "Once deleted, you will not be able to recover this!",
 			icon: "warning",
 			confirmButtonText: 'Yes, delete it!',
 			showCloseButton: true,
@@ -266,7 +240,7 @@ $(document).ready(function(){
 					window.location.href = "/admin/"+deleteFunction+"/"+id;
 				  }, 2000);
 				Swal.fire("Deleted!",
-					"Your product has been deleted.",
+					"Your item has been deleted.",
 					"success",
 					"3000",
 				)
@@ -278,7 +252,7 @@ $(document).ready(function(){
 	    var maxField = 10; //Input fields increment limitation
 	    var addButton = $('.add_button'); //Add button selector
 	    var wrapper = $('.field_wrapper'); //Input field wrapper
-	    var fieldHTML = '<div class="controls field_wrapper" style="margin-left:-2px;"><input type="text" name="sku[]" style="width:120px"/>&nbsp;<input type="text" name="size[]" style="width:120px"/>&nbsp;<input type="text" name="price[]" style="width:120px"/>&nbsp;<input type="text" name="stock[]" style="width:120px"/><a href="javascript:void(0);" class="remove_button" title="Remove field">Remove</a></div>'; //New input field html 
+	    var fieldHTML = '<div class="field_wrapper row"><label for="fname" class="col-sm-3 text-end control-label col-form-label"></label><div class="col-sm-9">&nbsp;<input class="form-control" required title="Required" type="text" name="sku[]" id="sku" placeholder="SKU" style="width:100px;">&nbsp;<input class="form-control" required title="Required" type="text" name="size[]" id="size" placeholder="Size" style="width:100px;">&nbsp;<input class="form-control" required title="Required" type="text" name="price[]" id="price" placeholder="Price" style="width:100px;">&nbsp;<input class="form-control" required title="Required" type="text" name="stock[]" id="stock" placeholder="Stock" style="width:100px;">&nbsp;<a href="javascript:void(0);" class="btn btn-sm btn-danger remove_button" title="Remove field">Remove</a></div></div>'; //New input field html 
 	    var x = 1; //Initial field counter is 1
 	    $(addButton).click(function(){ //Once add button is clicked
 	        if(x < maxField){ //Check maximum number of input fields
@@ -288,7 +262,7 @@ $(document).ready(function(){
 	    });
 	    $(wrapper).on('click', '.remove_button', function(e){ //Once remove button is clicked
 	        e.preventDefault();
-	        $(this).parent('div').remove(); //Remove field html
+	        $(this).parent('div').parent('div').remove(); //Remove field html
 	        x--; //Decrement field counter
 	    });
 	});

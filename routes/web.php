@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Fascade\Hash;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
@@ -17,9 +18,6 @@ use App\Http\Controllers\ProductsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::match(['get','post'],'/admin',[AdminController::class, 'login'])->name('admin');
 Auth::routes();
@@ -42,12 +40,14 @@ Route::group(['middleware'=>['auth']],function(){
     Route::match(['get','post'],'/admin/edit-product/{id}',[ProductsController::class, 'editProduct']);
     Route::get('/admin/delete-product/{id}',[ProductsController::class, 'deleteProduct']);
     Route::get('/admin/delete-product-image/{id}',[ProductsController::class, 'deleteProductImage']);
-
+    
     // admin product attribute routes
     Route::match(['get','post'],'/admin/add-attributes/{id}',[ProductsController::class, 'addAttributes']);
+    Route::get('/admin/delete-attribute/{id}',[ProductsController::class, 'deleteAttribute']);
 });
 
 Route::get('/logout',[AdminController::class, 'logout']);
 
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+// frontend routes
+Route::get('/', [IndexController::class, 'index'])->name('home');

@@ -108,9 +108,9 @@
     <!-- ============================================================== -->
     <!-- All Required js -->
     <!-- ============================================================== -->
-    <script src="{{ asset('/assets/libs/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/frontend_js/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="{{ asset('/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('/assets/js/frontend_js/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
     <!-- ============================================================== -->
     <!-- This page plugin js -->
     <!-- ============================================================== -->
