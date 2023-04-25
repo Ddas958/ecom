@@ -51,3 +51,5 @@ Route::get('/logout',[AdminController::class, 'logout']);
 
 // frontend routes
 Route::get('/', [IndexController::class, 'index'])->name('home');
+// category listing page
+Route::get('/products/{url}', [ProductsController::class, 'products'])->name('products');

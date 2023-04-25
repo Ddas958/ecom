@@ -132,7 +132,7 @@
 			<div class="col-sm-9 padding-right">
 				<!--features_items-->
 				<div class="features_items">
-					<h2 class="title text-center">Features Items</h2>
+					<h2 class="title text-center">{{$categoriesDetail->name}}</h2>
 					@foreach($productsAll as $product)
 					<div class="col-sm-4">
 						<div class="product-image-wrapper">
