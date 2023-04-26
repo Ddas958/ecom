@@ -1,10 +1,9 @@
-@extends('layouts.app')
-
+@extends('layouts.frontLayout.front_design')
 @section('content')
 
 <div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="error-box mt-5">
+    <div class="row justify-content-center jumbotron bg-white">
+        <div class="error-box">
             <div class="error-body text-center">
             <h1 class="error-title text-danger">404</h1>
             <h3 class="text-uppercase error-subtitle">PAGE NOT FOUND !</h3>

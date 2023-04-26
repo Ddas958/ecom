@@ -41,7 +41,7 @@
                 <input type="text" class="required form-control" name="price" id="price" value="{{$productsDetail->price}}">
                 <label class="control-label">Image</label><br>
                 @if(!empty($productsDetail->image))
-                <img src="{{asset('/images/backend_images/products/small/'.$productsDetail->image)}}" alt="" width="50" class="img-responsive">
+                <img src="{{asset('assets/images/backend_images/products/small/'.$productsDetail->image)}}" alt="" width="50" class="img-responsive">
                | <a href="{{url('/admin/delete-product-image/'.$productsDetail->id)}}">delete</a>
                 <input type="hidden" name="current_image" value="{{$productsDetail->image}}">
                 @endif

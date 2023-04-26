@@ -11,7 +11,7 @@ class IndexController extends Controller
         // $productsAll = Product::get();
         // $productsAll = Product::orderBy('id','desc')->get();
         $productsAll = Product::inRandomOrder()->get();
-        $categories = Category::with('categories')->where(['parent_id'=>0])->get();
+        $categories = Category::with('categories')->where(['parent_id'=>0,'status'=>1])->get();
         // $categrories = json_decode(json_encode($categrories));
         // echo "<pre>";print_r($categories);die;
         // foreach($categories as $cat){

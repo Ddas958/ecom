@@ -44,8 +44,9 @@
                     <label for="Description">Description</label>
                     <textarea name="description" id="description" class="required form-control"></textarea>
                     <label for="URL">URL</label>
-                    <input type="text" name="url" id="url" class="required form-control">
-                    </br>
+                    <input type="text" name="url" id="url" class="required form-control"></br>
+                    <label for="status">Status</label>
+                    <input type="checkbox" name="status" id="status" ></br>
                     <input type="submit" class="btn btn-primary" value="Add Category">
                     </section>
                 </div>

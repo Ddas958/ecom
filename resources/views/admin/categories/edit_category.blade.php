@@ -44,6 +44,8 @@
                     <label for="URL">URL</label>
                     <input type="text" name="url" id="url" class="required form-control" value="{{ $categoryDetails->url }}">
                     </br>
+                    <label for="status">Status</label>
+                    <input type="checkbox" name="status" id="status" @if($categoryDetails->status==1) checked @endif ></br>
                     <input type="submit" class="btn btn-primary" value="Update Category">
                     </section>
                 </div>

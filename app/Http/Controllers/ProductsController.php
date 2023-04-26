@@ -143,6 +143,22 @@ class ProductsController extends Controller
 	}
 
 	public function deleteProduct($id = null){
+		// Get Product Image
+		$productImage = Product::where('id',$id)->first();
+
+		// Get Product Image Paths
+		$large_image_path = 'assets/images/backend_images/products/large/';
+		$small_image_path = 'assets/images/backend_images/products/small/';
+
+		// Delete Large Image if not exists in Folder
+		if(file_exists($large_image_path.$productImage->image)){
+			unlink($large_image_path.$productImage->image);
+		}
+
+		// Delete Small Image if not exists in Folder
+		if(file_exists($small_image_path.$productImage->image)){
+			unlink($small_image_path.$productImage->image);
+		}
 		Product::where(['id'=>$id])->delete();
 		return redirect()->back()->with('success','Product deleted successfully!');
 	}
@@ -151,8 +167,8 @@ class ProductsController extends Controller
 		$productImage = Product::where('id',$id)->first();
 
 		// Get Product Image Paths
-		$large_image_path = 'assets/images/backend_images/product/large/';
-		$small_image_path = 'assets/images/backend_images/product/small/';
+		$large_image_path = 'assets/images/backend_images/products/large/';
+		$small_image_path = 'assets/images/backend_images/products/small/';
 
 		// Delete Large Image if not exists in Folder
         if(file_exists($large_image_path.$productImage->image)){
@@ -204,16 +220,27 @@ class ProductsController extends Controller
 	}
 
 	public function products($url=null){
-		$categories = Category::where(['parent_id'=>0])->get();
+		$countCategories =  Category::where(['url'=>$url,'status'=>1])->count();
+		if($countCategories==0){
+			abort(404);
+		}
+		$categories = Category::where(['parent_id'=>0,'status'=>1])->get();
 		$categoriesDetail = Category::where(['url'=>$url])->first();
 		
 		if($categoriesDetail->parent_id==0){
     		$subCategories = Category::where(['parent_id'=>$categoriesDetail->id])->get();
     		$subCategories = json_decode(json_encode($subCategories));
-    		foreach($subCategories as $subcat){
-    			$cat_ids[] = $subcat->id;
-    		}
-    		$productsAll = Product::whereIn('category_id', $cat_ids)->get();
+
+			if(!$subCategories){
+				$productsAll = Product::where('category_id',$categoriesDetail->id)->get();
+			}
+			else{
+				foreach($subCategories as $subcat){
+					$cat_ids[] = $subcat->id;
+				}
+				$productsAll = Product::whereIn('category_id', $cat_ids)->get();
+			}
+    		
 			
     	}else{
     		$productsAll = Product::where(['category_id'=>$categoriesDetail->id])->get();
