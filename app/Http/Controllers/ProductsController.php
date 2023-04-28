@@ -206,7 +206,7 @@ class ProductsController extends Controller
                     }
                     $attrCountSizes = ProductsAttribute::where(['product_id'=>$id,'size'=>$data['size'][$key]])->count();
                     if($attrCountSizes>0){
-                        return redirect('admin/add-attributes/'.$id)->with('error', 'Attribute already exists. Please add another Attribute.');    
+                        return redirect('admin/add-attributes/'.$id)->with('error', '"'.$data['size'][$key].'" Attribute already exists. Please add another Attribute.');    
                     }
                     $attr = new ProductsAttribute;
                     $attr->product_id = $id;
@@ -272,8 +272,11 @@ class ProductsController extends Controller
 		$data=$request->all();
 		$prodSize = explode('-',$data['idSize']);
 		$pid = $prodSize[0];
-		$psize = $prodSize[1];
-		$proAttr = ProductsAttribute::where(['product_id'=>$pid,'size'=>$psize])->first();
-		echo $proAttr->price;
+		if(isset($prodSize[1])){
+			$psize = $prodSize[1];
+			$proAttr = ProductsAttribute::where(['product_id'=>$pid,'size'=>$psize])->first();
+			echo $proAttr->price;
+		}
+		
 	}
 }

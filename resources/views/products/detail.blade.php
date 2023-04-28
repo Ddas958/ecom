@@ -50,14 +50,16 @@
 								<img src="images/product-details/1.jpg" class="newarrival" alt="" />
 								<h2>{{$productDetails->product_name}}</h2>
 								<p>{{$productDetails->product_code}}</p>
+								@if($productDetails->attributes)
 								<p>
 									<select name="selSize" id="selSize" style="width:150px;">
-									<option value="" disabled>Select Size</option>
+										<option >Select Size</option>
 										@foreach($productDetails->attributes as $sizes)
 										<option value="{{$productDetails->id}}-{{$sizes->size}}">{{$sizes->size}}</option>
 										@endforeach
 									</select>
 								</p>
+								@endif	
 								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span id="getPrice">INR {{$productDetails->price}}</span>

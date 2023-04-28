@@ -3,7 +3,7 @@
   <nav class="navbar top-navbar navbar-expand-md navbar-dark">
     <div class="navbar-header" data-logobg="skin5">
       <!-- Logo -->
-      <a class="navbar-brand" href="{{url('admin/dashboard')}}">
+      <a class="navbar-brand" target="_blank" href="{{url('/')}}">
         <!-- Logo text -->
         <span class="logo-text ms-2">
           <!-- dark Logo text -->

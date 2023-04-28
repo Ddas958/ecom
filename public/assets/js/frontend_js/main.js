@@ -38,9 +38,11 @@ $('#selSize').change(function(){
 		url:'/getproductprice',
 		data:{idSize:idSize},
 		success:function(resp){
-			$('#getPrice').html("INR " + resp);
+			if(resp != ""){
+				$('#getPrice').html("INR " + resp);
+			}
 		},error:function(err){
-			alert(err);
+			console.log(err);
 		}
 	})
 });
