@@ -28,3 +28,19 @@ $(document).ready(function(){
 		});
 	});
 });
+$('#selSize').change(function(){
+	var idSize = $(this).val();
+	if(idSize == ""){
+		return false;
+	}
+	$.ajax({
+		method:'get',
+		url:'/getproductprice',
+		data:{idSize:idSize},
+		success:function(resp){
+			$('#getPrice').html("INR " + resp);
+		},error:function(err){
+			alert(err);
+		}
+	})
+});

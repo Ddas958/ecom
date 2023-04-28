@@ -36,7 +36,9 @@
                 <label class="control-label">Product Color</label>
                 <input type="text" class="required form-control" name="product_color" id="product_color">
                 <label class="control-label">Description</label>
-                <textarea name="description" class="required form-control" id="description"></textarea>
+                <textarea name="description" class="form-control" id="description"></textarea>
+                <label class="control-label">Care</label>
+                <textarea name="care" class="form-control" id="care"></textarea>
                 <label class="control-label">Price</label>
                 <input type="text" class="required form-control" name="price" id="price">
                 <label class="control-label">Image</label>

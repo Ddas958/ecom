@@ -53,3 +53,5 @@ Route::get('/logout',[AdminController::class, 'logout']);
 Route::get('/', [IndexController::class, 'index'])->name('home');
 // category listing page
 Route::get('/products/{url}', [ProductsController::class, 'products'])->name('products');
+Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
+Route::get('/getproductprice', [ProductsController::class, 'getProductPrice'])->name('product');

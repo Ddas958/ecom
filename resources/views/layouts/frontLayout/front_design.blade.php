@@ -13,19 +13,12 @@
     <link href="{{ asset('/assets/css/frontend_css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('/assets/css/frontend_css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('/assets/css/frontend_css/responsive.css') }}" rel="stylesheet">       
-    <link rel="shortcut icon" href="{{ asset('/assets/images/frontend_images/ico/favicon.ico') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('/assets/images/frontend_images/ico/apple-touch-icon-144-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('/assets/images/frontend_images/ico/apple-touch-icon-114-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('/assets/images/frontend_images/ico/apple-touch-icon-72-precomposed.png') }}">
-    <link rel="apple-touch-icon-precomposed" href="{{ asset('/assets/images/frontend_images/ico/apple-touch-icon-57-precomposed.png') }}">
-</head><!--/head-->
-
+    <link rel="shortcut icon" href="{{ asset('/assets/images/favicon.png') }}">
+</head>
 <body>
-	
     @include('layouts.frontLayout.front_header')
     @yield('content')
     @include('layouts.frontLayout.front_footer')
-
     <script src="{{ asset('/assets/js/frontend_js/jquery.js') }}"></script>
     <script src="{{ asset('/assets/js/frontend_js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/js/frontend_js/jquery.scrollUp.min.js') }}"></script>

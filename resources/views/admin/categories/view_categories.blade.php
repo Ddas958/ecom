@@ -33,6 +33,7 @@
                                             <th>Category Name</th>
                                             <th>Parent Category</th>
                                             <th>Category URL</th>
+                                            <th>Status</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -44,6 +45,7 @@
                                             <td>{{$category->name}}</td>
                                             <td>{{$category->getParentsNames()}}</td>
                                             <td>{{$category->url}}</td>
+                                            <td>@if($category->status=='1')Active @else Inactive @endif</td>
                                             <td><a href="{{url('admin/edit-category/'.$category->id)}}" class="btn btn-cyan btn-sm text-white">Edit</a> <a id="delCat" rel="{{$category->id}}" rel1="delete-category" href="javascript:void(0)" class="delRecord btn btn-danger btn-sm text-white">Delete</a></td>
                                         </tr>
                                         @endforeach

@@ -31,6 +31,11 @@ class ProductsController extends Controller
     		}else{
 				$product->description = '';    			
     		}
+			if(!empty($data['care'])){
+    			$product->care = $data['care'];
+    		}else{
+				$product->care = '';    			
+    		}
     		$product->price = $data['price'];
 
     		// Upload Image
@@ -100,6 +105,9 @@ class ProductsController extends Controller
             if(empty($data['description'])){
                 $data['description'] = '';
             }
+			if(empty($data['care'])){
+				$data['care'] = '';  			
+    		}
 		 Product::where(['id'=>$id])->update(
 			[
 			'category_id' => $data['category_id'],
@@ -107,6 +115,7 @@ class ProductsController extends Controller
     		'product_code'=> $data['product_code'],
     		'product_color' => $data['product_color'],
     		'description' => $data['description'],
+    		'care' => $data['care'],
     		'price' => $data['price'],
 			'image' => $filename,
 			]
@@ -248,5 +257,23 @@ class ProductsController extends Controller
     	}
 		
 		return view('products.listing')->with(compact('categoriesDetail','productsAll','categories'));
+	}
+
+	public function product($id=null){
+		$productDetails = Product::with('attributes')->where(['id'=>$id])->first();
+		$productDetails = json_decode(json_encode($productDetails));
+		$products = Product::inRandomOrder()->limit('8')->get();
+		
+		//dd($productDetails);
+		$categories = Category::where(['parent_id'=>0,'status'=>1])->get();
+		return view('products.detail')->with(compact('productDetails','categories','products'));
+	}
+	public function getProductPrice(Request $request){
+		$data=$request->all();
+		$prodSize = explode('-',$data['idSize']);
+		$pid = $prodSize[0];
+		$psize = $prodSize[1];
+		$proAttr = ProductsAttribute::where(['product_id'=>$pid,'size'=>$psize])->first();
+		echo $proAttr->price;
 	}
 }

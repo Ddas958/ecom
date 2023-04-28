@@ -36,7 +36,9 @@
                 <label class="control-label">Product Color</label>
                 <input type="text" class="required form-control" name="product_color" id="product_color" value="{{$productsDetail->product_color}}">
                 <label class="control-label">Description</label>
-                <textarea name="description" class="required form-control" id="description">{{$productsDetail->description}}</textarea>
+                <textarea name="description" class="form-control" id="description">{{$productsDetail->description}}</textarea>
+                <label class="control-label">Care</label>
+                <textarea name="care" class="form-control" id="care">{{$productsDetail->care}}</textarea>
                 <label class="control-label">Price</label>
                 <input type="text" class="required form-control" name="price" id="price" value="{{$productsDetail->price}}">
                 <label class="control-label">Image</label><br>
