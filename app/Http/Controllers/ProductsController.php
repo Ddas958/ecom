@@ -10,6 +10,7 @@ use Image;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductsAttribute;
+use App\Models\ProductsImage;
 
 class ProductsController extends Controller
 {
@@ -193,6 +194,58 @@ class ProductsController extends Controller
 		Product::where(['id'=>$id])->update(['image'=>'']);
 		return redirect()->back()->with('success','Product image deleted successfully!');
 	}
+
+	public function addImages(Request $request, $id=null){
+        $productDetails = Product::where(['id' => $id])->first();
+        $categoryDetails = Category::where(['id'=>$productDetails->category_id])->first();
+        $category_name = $categoryDetails->name;
+
+        if($request->isMethod('post')){
+            $data = $request->all();
+            if ($request->hasFile('image')) {
+                $files = $request->file('image');
+                foreach($files as $file){
+                    // Upload Images after Resize
+                    $image = new ProductsImage;
+                    $extension = $file->getClientOriginalExtension();
+                    $fileName = rand(111,99999).'.'.$extension;
+                    $large_image_path = 'assets/images/backend_images/products/large'.'/'.$fileName;
+                    $small_image_path = 'assets/images/backend_images/products/small'.'/'.$fileName;  
+                    Image::make($file)->save($large_image_path);
+                    Image::make($file)->resize(300, 300)->save($small_image_path);
+                    $image->image = $fileName;  
+                    $image->product_id = $data['product_id'];
+                    $image->save();
+                }   
+            }
+		
+            return redirect('admin/add-images/'.$id)->with('success', 'Product Images has been added successfully');
+        }
+
+        $productImages = ProductsImage::where(['product_id' => $id])->orderBy('id','DESC')->get();
+		
+        return view('admin.products.add_images')->with(compact('productDetails','category_name','productImages'));
+    }
+
+	public function deleteProductImages($id=null){
+        // Get Product Image
+        $productImage = ProductsImage::where('id',$id)->first();
+        // Get Product Image Paths
+        $large_image_path = 'assets/images/backend_images/products/large/';
+        $small_image_path = 'assets/images/backend_images/products/small/';
+        // Delete Large Image if not exists in Folder
+        if(file_exists($large_image_path.$productImage->image)){
+            unlink($large_image_path.$productImage->image);
+        }
+        // Delete Small Image if not exists in Folder
+        if(file_exists($small_image_path.$productImage->image)){
+            unlink($small_image_path.$productImage->image);
+        }
+        // Delete Image from Products Images table
+        ProductsImage::where(['id'=>$id])->delete();
+
+        return redirect()->back()->with('success', 'Product alternate mage has been deleted successfully');
+    }
 
 	public function addAttributes(Request $request, $id=null){
 		if($request->isMethod('post')){
