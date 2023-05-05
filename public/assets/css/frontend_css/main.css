@@ -1,5 +1,4 @@
-﻿
-/*************************
+﻿/*************************
 *******Typography******
 **************************/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
@@ -939,8 +938,6 @@ h2.title {
   color: #fff;
 }
 
-
-
 .add-to-cart {
   background:#F5F5ED;
   border: 0 none;
@@ -1064,8 +1061,6 @@ h2.title {
   background: #ccccc6;
 }
 
-.recommended_items  h2 {
-}
 
 .our_partners{
   overflow:hidden;
@@ -1139,7 +1134,6 @@ h2.title {
 }
 
 
-
 /*************************
 *******Product Details CSS******
 **************************/
@@ -1165,18 +1159,15 @@ h2.title {
   margin-top: 10px;
 }
 
-
-
 .view-product {
   position: relative;
 }
 
-.view-product img {
+/* .view-product img {
   border: 1px solid #F7F7F0;
-  height: 380px;
+  height: 300px;
   width: 100%;
-  object-fit: cover;
-}
+} */
 
 .view-product h3 {
   background: #FE980F;
@@ -1433,13 +1424,6 @@ h2.title {
   overflow: hidden;
 }
 
-.login-form {
-
-}
-
-.signup-form {
-
-}
 
 .login-form h2, .signup-form h2 {
   color: #696763;
@@ -1488,10 +1472,6 @@ h2.title {
   display: block;
   font-family: 'Roboto', sans-serif;
   padding: 6px 25px;
-}
-
-.login-form label{
-
 }
 
 
@@ -1751,9 +1731,6 @@ h2.title {
   margin-right: 10px
 }
 
-.user_info > li > span {
-}
-
 .user_info input, select, textarea {
   background: #F0F0E9;
   border:0;
@@ -1789,8 +1766,6 @@ h2.title {
   margin-left: 20px
 }
 
-
-
 /*************************
 *******checkout CSS******
 **************************/
@@ -1811,7 +1786,6 @@ h2.title {
 .checkout-options {
   padding-left: 20px
 }
-
 
 .checkout-options h3 {
   color: #363432;
@@ -1861,7 +1835,6 @@ h2.title {
   padding: 2px 3px;
 }
 
-
 .register-req  {
   font-size: 14px;
   font-weight: 300;
@@ -1874,8 +1847,6 @@ h2.title {
   margin-bottom: 0
 }
 
-
-
 .shopper-info p, 
 .bill-to p, 
 .order-message p {
@@ -1883,7 +1854,6 @@ h2.title {
   font-size: 20px;
   font-weight: 300
 }
-
 
 .shopper-info .btn-primary {
   background: #FE980F;
@@ -1898,7 +1868,6 @@ h2.title {
   float: left;
   width: 47%
 }
-
 
 .shopper-info > form > input, 
 .form-two > form > select, 
@@ -1920,7 +1889,6 @@ h2.title {
   margin-left: 5%
 }
 
-
 .order-message textarea {
   font-size: 12px;
   height: 335px;
@@ -1935,7 +1903,6 @@ h2.title {
   margin-left: 10px;
   font-size: 14px
 }
-
 
 .review-payment h2 {
   color: #696763;
@@ -1982,14 +1949,9 @@ h2.title {
   border-bottom: 1px solid #F7F7F0;
 }
 
-
-
-
 /*************************
 *******Blog CSS******
 **************************/
-
-
 
 .blog-post-area 
 .single-blog-post h3 {
@@ -1999,9 +1961,6 @@ h2.title {
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 17px;
-}
-
-.single-blog-post > a {
 }
 
 .blog-post-area 
@@ -2313,7 +2272,6 @@ h2.title {
 }
 
 
-
 .sinlge-post-meta li {
   background:#F0F0E9;
   color: #363432;
@@ -2520,5 +2478,3 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
-
-

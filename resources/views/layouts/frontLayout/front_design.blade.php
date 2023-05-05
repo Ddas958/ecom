@@ -13,6 +13,7 @@
     <link href="{{ asset('/assets/css/frontend_css/animate.css') }}" rel="stylesheet">
 	<link href="{{ asset('/assets/css/frontend_css/main.css') }}" rel="stylesheet">
 	<link href="{{ asset('/assets/css/frontend_css/responsive.css') }}" rel="stylesheet">       
+	<link href="{{ asset('/assets/css/frontend_css/easyzoom.css') }}" rel="stylesheet">       
     <link rel="shortcut icon" href="{{ asset('/assets/images/favicon.png') }}">
 </head>
 <body>
@@ -25,5 +26,6 @@
     <script src="{{ asset('/assets/js/frontend_js/price-range.js') }}"></script>
     <script src="{{ asset('/assets/js/frontend_js/jquery.prettyPhoto.js') }}"></script>
     <script src="{{ asset('/assets/js/frontend_js/main.js') }}"></script>
+    <script src="{{ asset('/assets/js/frontend_js/easyzoom.js') }}"></script>
 </body>
 </html>

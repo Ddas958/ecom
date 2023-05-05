@@ -53,7 +53,7 @@
                                             <img src="{{ asset('assets/images/backend_images/products/small/'.$product->image) }}" style="width:35px;">
                                             @endif
                                         </td>
-                                        <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-primary btn-mini">Add Attributes</a> <a href="{{ url('/admin/add-images/'.$product->id) }}" class="btn btn-primary btn-mini">Add Images</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a href="javascript:void(0)" rel="{{$product->id}}" rel1="delete-product" class="delRecord btn btn-danger btn-mini">Delete</a></td>
+                                        <td class="center"><a href="#myModal{{ $product->id }}" data-toggle="modal" class="btn btn-success btn-mini">View</a> <a href="{{ url('/admin/edit-product/'.$product->id) }}" class="btn btn-primary btn-mini">Edit</a> <a href="javascript:void(0)" rel="{{$product->id}}" rel1="delete-product" class="delRecord btn btn-danger btn-mini">Delete</a> <a href="{{ url('/admin/add-attributes/'.$product->id) }}" class="btn btn-primary btn-mini">Add Attributes</a> <a href="{{ url('/admin/add-images/'.$product->id) }}" class="btn btn-primary btn-mini">Add Images</a></td>
                                     </tr>
                                     <div id="myModal{{ $product->id }}" class="bg-white modal hide">
                                         <div class="modal-header">

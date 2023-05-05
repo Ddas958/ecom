@@ -316,10 +316,10 @@ class ProductsController extends Controller
 		$productDetails = Product::with('attributes')->where(['id'=>$id])->first();
 		$productDetails = json_decode(json_encode($productDetails));
 		$products = Product::inRandomOrder()->limit('8')->get();
-		
-		//dd($productDetails);
+		$productImages = ProductsImage::where(['product_id' => $id])->orderBy('id','DESC')->get();
+	
 		$categories = Category::where(['parent_id'=>0,'status'=>1])->get();
-		return view('products.detail')->with(compact('productDetails','categories','products'));
+		return view('products.detail')->with(compact('productDetails','categories','products','productImages'));
 	}
 	public function getProductPrice(Request $request){
 		$data=$request->all();
