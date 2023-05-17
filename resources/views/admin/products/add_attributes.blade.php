@@ -72,6 +72,8 @@
                 <div class="table">
                     <div class="row">
                         <div class="col-sm-12">
+                            <form action="{{url('/admin/edit-attributes/'.$productDetails->id)}}" method="post">
+                            {{ csrf_field() }}
                             <table id="zero_config" class="table table-striped table-bordered dataTable">
                                 <thead>
                                     <tr role="row">
@@ -86,17 +88,21 @@
                                 <tbody> 
                                     @foreach($productDetails['attributes'] as $attribute)                                   
                                     <tr role="row" class="odd">
-                                        <td>{{ $attribute->id }}</td>
+                                        <td><input type="hidden" name="idAttr[]" value="{{ $attribute->id }}">{{ $attribute->id }}</td>
                                         <td>{{ $attribute->sku }}</td>
                                         <td>{{ $attribute->size }}</td>
-                                        <td>{{ $attribute->price }}</td>
-                                        <td>{{ $attribute->stock }}</td>
-                                        <td class="center"><a href="javascript:void(0)" rel="{{$attribute->id}}" rel1="delete-attribute" class="delRecord btn btn-danger btn-mini">Delete</a></td>
+                                        <td><input type="text" name="price[]" value="{{ $attribute->price }}"></td>
+                                        <td><input type="text" name="stock[]" value="{{ $attribute->stock }}"></td>
+                                        <td class="center">
+                                           <input type="submit" value="update" class="btn btn-primary btn-mini">
+                                            <a href="javascript:void(0)" rel="{{$attribute->id}}" rel1="delete-attribute" class="delRecord btn btn-danger btn-mini">Delete</a>
+                                        </td>
                                     </tr>
                                    
                                     @endforeach
                                 </tbody>
                             </table>
+                            </form>
                         </div>
                     </div>
                 </div>

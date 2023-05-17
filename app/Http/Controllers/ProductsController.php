@@ -276,6 +276,20 @@ class ProductsController extends Controller
 		//dd($productDetails);
 		return view('admin.products.add_attributes')->with(compact('productDetails'));
 	}
+
+	public function editAttributes(Request $request,$id=null){
+		if($request->isMethod('post')){
+			$data = $request->all();
+			//echo "<pre>"; print_r($data); die;
+			foreach($data['idAttr'] as $key=> $attr){
+                if(!empty($attr)){
+                    ProductsAttribute::where(['id' => $data['idAttr'][$key]])->update(['price' => $data['price'][$key], 'stock' => $data['stock'][$key]]);
+                }
+            }
+            return redirect('admin/add-attributes/'.$id)->with('success', 'Product Attributes has been updated successfully');
+		}
+	}
+
 	public function deleteAttribute($id = null){
 		ProductsAttribute::where(['id'=>$id])->delete();
 		return redirect()->back()->with('success','Attribute deleted successfully!');
