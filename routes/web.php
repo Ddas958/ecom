@@ -58,3 +58,4 @@ Route::get('/', [IndexController::class, 'index'])->name('home');
 Route::get('/products/{url}', [ProductsController::class, 'products'])->name('products');
 Route::get('/product/{id}', [ProductsController::class, 'product'])->name('product');
 Route::get('/getproductprice', [ProductsController::class, 'getProductPrice'])->name('product');
+Route::match(['get','post'],'/cart',[ProductsController::class, 'cart'])->name('cart');

@@ -54,12 +54,14 @@
 								<span id="getPrice">INR {{$productDetails->price}}</span>
 								<label>Quantity:</label>
 								<input type="text" value="1" />
-								<button type="button" class="btn btn-fefault cart">
+								@if($productStock>0)
+								<button id="addtocartButton" type="button" class="btn btn-fefault cart">
 									<i class="fa fa-shopping-cart"></i>
 									Add to cart
 								</button>
+								@endif
 							</span>
-							<p><b>Availability:</b> In Stock</p>
+							<p><b>Availability: </b><span id="Availability">@if($productStock>0) In Stock @else Out Of Stock @endif </span></p>
 							<a href=""><img src="{{asset('assets/images/frontend_images/product-details/share.png')}}" class="share img-responsive"  alt="" /></a>
 						</div>
 					</div>

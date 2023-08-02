@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
 use Image;
+use DB;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductsAttribute;
@@ -331,9 +332,10 @@ class ProductsController extends Controller
 		$productDetails = json_decode(json_encode($productDetails));
 		$products = Product::inRandomOrder()->limit('8')->get();
 		$productImages = ProductsImage::where(['product_id' => $id])->orderBy('id','DESC')->get();
+		$productStock = ProductsAttribute::where(['product_id' => $id])->sum('stock');
 	
 		$categories = Category::where(['parent_id'=>0,'status'=>1])->get();
-		return view('products.detail')->with(compact('productDetails','categories','products','productImages'));
+		return view('products.detail')->with(compact('productDetails','categories','products','productImages','productStock'));
 	}
 	public function getProductPrice(Request $request){
 		$data=$request->all();
@@ -343,7 +345,64 @@ class ProductsController extends Controller
 			$psize = $prodSize[1];
 			$proAttr = ProductsAttribute::where(['product_id'=>$pid,'size'=>$psize])->first();
 			echo $proAttr->price;
+			echo "#";
+			echo $proAttr->stock;
 		}
 		
 	}
+
+	public function addtocart(Request $request){
+
+        Session::forget('CouponAmount');
+        Session::forget('CouponCode');
+
+        $data = $request->all();
+        /*echo "<pre>"; print_r($data); die;*/
+        if(empty(Auth::user()->email)){
+            $data['user_email'] = '';    
+        }else{
+            $data['user_email'] = Auth::user()->email;
+        }
+
+        $session_id = Session::get('session_id');
+        if(!isset($session_id)){
+            $session_id = str_random(40);
+            Session::put('session_id',$session_id);
+        }
+
+        $countProducts = DB::table('cart')->where(['product_id' => $data['product_id'],'product_color' => $data['product_color'],'size' => $data['size'],'session_id' => $session_id])->count();
+        if($countProducts>0){
+            return redirect()->back()->with('flash_message_error','Product already exist in Cart!');
+        }
+
+        $sizeIDArr = explode('-',$data['size']);
+        $product_size = $sizeIDArr[1];
+
+        $getSKU = ProductsAttribute::select('sku')->where(['product_id' => $data['product_id'], 'size' => $product_size])->first();
+                
+        DB::table('cart')
+        ->insert(['product_id' => $data['product_id'],'product_name' => $data['product_name'],
+            'product_code' => $getSKU['sku'],'product_color' => $data['product_color'],
+            'price' => $data['price'],'size' => $product_size,'quantity' => $data['quantity'],'user_email' => $data['user_email'],'session_id' => $session_id]);
+
+        return redirect('cart')->with('flash_message_success','Product has been added in Cart!');
+
+    }    
+
+	public function cart(){           
+        if(Auth::check()){
+            $user_email = Auth::user()->email;
+            $userCart = DB::table('cart')->where(['user_email' => $user_email])->get();     
+        }else{
+            $session_id = Session::get('session_id');
+            $userCart = DB::table('cart')->where(['session_id' => $session_id])->get();    
+        }
+        
+        foreach($userCart as $key => $product){
+            $productDetails = Product::where('id',$product->product_id)->first();
+            $userCart[$key]->image = $productDetails->image;
+        }
+        /*echo "<pre>"; print_r($userCart); die;*/
+        return view('products.cart')->with(compact('userCart'));
+    }
 }

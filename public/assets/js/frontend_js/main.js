@@ -39,8 +39,16 @@ $(document).ready(function(){
 			url:'/getproductprice',
 			data:{idSize:idSize},
 			success:function(resp){
+				var arr = resp.split('#');
 				if(resp != ""){
-					$('#getPrice').html("INR " + resp);
+					$('#getPrice').html("INR " + arr[0]);
+				}
+				if(arr[1] == 0){
+					$("#addtocartButton").hide();
+					$("#Availability").text('Out Of Stock');
+				}else{
+					$("#addtocartButton").show();
+					$("#Availability").text('In Stock');
 				}
 			},error:function(err){
 				console.log(err);
