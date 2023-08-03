@@ -40,6 +40,7 @@ $(document).ready(function(){
 			data:{idSize:idSize},
 			success:function(resp){
 				var arr = resp.split('#');
+				$("#price").val(arr[0]);
 				if(resp != ""){
 					$('#getPrice').html("INR " + arr[0]);
 				}
